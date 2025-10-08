@@ -1,0 +1,11 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.star-rating .star-filled {
+    color: #f59e0b; /* Tailwind amber-500 */
+}
+
+.star-rating .star-empty {
+    color: #d1d5db; /* Tailwind gray-300 */
+}

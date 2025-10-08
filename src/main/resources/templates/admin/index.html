@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Dashbaord</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for creating charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons for vector icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts for the "Inter" font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar Navigation (fixed) -->
+        <aside class="w-64 bg-white shadow-md flex flex-col p-4 flex-shrink-0">
+            <div class="flex items-center justify-center mb-8">
+                <a href="index.html">
+                    <h1 class="text-2xl font-bold text-gray-800">Payroll</h1>
+                </a>
+                <button class="ml-auto text-gray-600 lg:hidden">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <!-- User Profile Section -->
+            <div class="flex flex-col items-center mb-8">
+                <img src="https://placehold.co/80x80/E2E8F0/4A5568?text=UR" alt="Urdhwarit"
+                    class="w-20 h-20 rounded-full mb-2">
+                <h2 class="font-semibold text-gray-800">Urdhwarit Rane</h2>
+                <p class="text-sm text-gray-500">Admin</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex-grow">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="index.html" class="flex items-center p-3 text-white bg-indigo-500 rounded-lg">
+                            <i data-feather="grid" class="w-5 h-5 mr-3"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="projects.html"
+                            class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="briefcase" class="w-5 h-5 mr-3"></i>
+                            Projects
+                        </a>
+                    </li>
+                    <li>
+                        <a href="employees.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="users" class="w-5 h-5 mr-3"></i>
+                            Employees
+                        </a>
+                    </li>
+                    <li>
+                        <a href="leave_management.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="file-text" class="w-5 h-5 mr-3"></i>
+                            Leave Management
+                        </a>
+                    </li>
+                    <li>
+                        <a href="attendance.html"
+                            class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="check-square" class="w-5 h-5 mr-3"></i>
+                            Attendance
+                        </a>
+                    </li>
+                    <li>
+                        <a href="holidays.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="calendar" class="w-5 h-5 mr-3"></i>
+                            Holidays
+                        </a>
+                    </li>
+                    <li>
+                        <a href="clients.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="user-check" class="w-5 h-5 mr-3"></i> Clients
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+
+    
+    <!-- New Main -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header (fixed within main content) -->
+            <header class="bg-white shadow-sm p-4 flex items-center">
+                <div class="flex-1 flex justify-end items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-semibold text-gray-700">Urdhwarit Rane</span>
+                        <a href=""><img src="https://placehold.co/32x32/E2E8F0/4A5568?text=UR" alt="Urdhwarit"
+                                class="w-10 h-10 rounded-full"></a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content (scrollable content) -->
+            <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+                <!-- Breadcrumbs -->
+                <div class="flex items-center text-sm text-gray-500 mb-6">
+                    <a href="index.html" class="hover:text-gray-700"><i data-feather="home" class="w-4 h-4"></i></a>
+                    <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span>Home</span>
+                    <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span class="text-gray-800 font-semibold">Dashboard</span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Dashboard</h2>
+                <!-- Main Section -->
+                 <section class="dashboard-section">
+                <h1 class="section-title">HR Dashboard</h1>
+                <!-- KPI Cards -->
+                <div class="kpi-cards-grid">
+                    <div class="card kpi-card">
+                        <div class="card-header">
+                            <p>Average Time to Hire</p>
+                            <span class="trend down">-2.5%</span>
+                        </div>
+                        <h2>18 <small>days</small></h2>
+                        <p class="comparison">vs last month</p>
+                        <div class="chart-container-small">
+                            <canvas id="timeToHireChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card kpi-card">
+                        <div class="card-header">
+                            <p>Employee Turnover Rate</p>
+                            <span class="trend up">+0.8%</span>
+                        </div>
+                        <h2>4.2<small>%</small></h2>
+                        <p class="comparison">vs last quarter</p>
+                        <div class="chart-container-small">
+                            <canvas id="turnoverChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card kpi-card">
+                        <div class="card-header">
+                            <p>Training Completion Rate</p>
+                            <span class="trend up">+5.3%</span>
+                        </div>
+                        <h2>87<small>%</small></h2>
+                        <p class="comparison">vs last quarter</p>
+                        <div class="chart-container-small">
+                            <canvas id="completionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <div class="card employee-summary-card">
+                        <div class="card-header">
+                           <h3>Employee Summary</h3>
+                           <i data-feather="more-horizontal"></i>
+                        </div>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <div class="icon-bg blue"><i data-feather="users"></i></div>
+                                <div>
+                                    <p class="summary-value">256</p>
+                                    <p class="summary-label">Total Employees</p>
+                                </div>
+                            </div>
+                             <div class="summary-item">
+                                <div class="icon-bg green"><i data-feather="user-check"></i></div>
+                                <div>
+                                    <p class="summary-value">235</p>
+                                    <p class="summary-label">Active Employees</p>
+                                </div>
+                            </div>
+                             <div class="summary-item">
+                                <div class="icon-bg orange"><i data-feather="user-minus"></i></div>
+                                <div>
+                                    <p class="summary-value">21</p>
+                                    <p class="summary-label">Contractors</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="department-distribution">
+                            <h4>Department Distribution</h4>
+                            <div class="chart-container-pie">
+                                <canvas id="departmentPieChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card attendance-card">
+                         <div class="card-header">
+                           <h3>Attendance Overview</h3>
+                           <i data-feather="more-horizontal"></i>
+                        </div>
+                        <h4>Today's Attendance</h4>
+                        <div class="attendance-grid">
+                            <div class="attendance-item present"><span>215</span><p>Present</p><small>84.0%</small></div>
+                            <div class="attendance-item absent"><span>12</span><p>Absent</p><small>4.7%</small></div>
+                            <div class="attendance-item late"><span>8</span><p>Late</p><small>3.1%</small></div>
+                            <div class="attendance-item on-leave"><span>21</span><p>On Leave</p><small>8.2%</small></div>
+                        </div>
+
+                        <h4 class="weekly-attendance-title">Weekly Attendance</h4>
+                        <div class="chart-container-bar">
+                            <canvas id="weeklyAttendanceChart"></canvas>
+                        </div>
+
+                        <div class="attendance-actions">
+                            <button class="btn-outline"><i data-feather="eye"></i> View Full Attendance History</button>
+                            <button class="btn-outline"><i data-feather="bar-chart-2"></i> Generate Attendance Report</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projects Table -->
+                 <div class="card projects-card">
+                    <div class="card-header">
+                        <h3>Projects</h3>
+                        <a href="#" class="view-all-link">View All</a>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Project Name</th>
+                                    <th>Employee Team</th>
+                                    <th>Team Leaders</th>
+                                    <th>Priority</th>
+                                    <th>Open Task</th>
+                                    <th>Completed Task</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Project A</td>
+                                    <td><div class="team-pills"><img src="https://placehold.co/24x24/FFC0CB/4A5568?text=A"><img src="https://placehold.co/24x24/ADD8E6/4A5568?text=B"><span class="pill-more">+1</span></div></td>
+                                    <td>John Doe</td>
+                                    <td><span class="priority medium">Medium</span></td>
+                                    <td>19</td>
+                                    <td>10</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                    <td><div class="action-icons"><i data-feather="file-text"></i><i data-feather="edit-2"></i><i data-feather="trash-2"></i></div></td>
+                                </tr>
+                                <tr>
+                                    <td>Project C</td>
+                                    <td><div class="team-pills"><img src="https://placehold.co/24x24/90EE90/4A5568?text=C"><img src="https://placehold.co/24x24/FFD700/4A5568?text=D"></div></td>
+                                    <td>Olivia Brown</td>
+                                    <td><span class="priority high">High</span></td>
+                                    <td>30</td>
+                                    <td>25</td>
+                                    <td><span class="status completed">Completed</span></td>
+                                    <td><div class="action-icons"><i data-feather="file-text"></i><i data-feather="edit-2"></i><i data-feather="trash-2"></i></div></td>
+                                </tr>
+                                <tr>
+                                    <td>Project F</td>
+                                    <td><div class="team-pills"><img src="https://placehold.co/24x24/E6E6FA/4A5568?text=E"><img src="https://placehold.co/24x24/DDA0DD/4A5568?text=F"></div></td>
+                                    <td>Jack Robinson</td>
+                                    <td><span class="priority low">Low</span></td>
+                                    <td>12</td>
+                                    <td>10</td>
+                                    <td><span class="status in-progress">In Progress</span></td>
+                                    <td><div class="action-icons"><i data-feather="file-text"></i><i data-feather="edit-2"></i><i data-feather="trash-2"></i></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            </main>
+        </div>
+    </div>
+    <!-- Edit Project Modal -->
+    <div id="editProjectModal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Project</h2>
+                <button id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editProjectForm">
+                    <div class="form-group">
+                        <label for="editProjectName">Project Name</label>
+                        <input type="text" id="editProjectName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTeamLeaders">Team Leaders</label>
+                        <input type="text" id="editTeamLeaders" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPriority">Priority</label>
+                        <select id="editPriority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label for="editStatus">Status</label>
+                        <select id="editStatus">
+                            <option value="pending">Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancelEditBtn" class="btn-secondary">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/js/dashboard.js"></script>
+</body>
+</html>

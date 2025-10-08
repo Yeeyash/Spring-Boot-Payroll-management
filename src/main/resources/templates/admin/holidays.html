@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Holidays</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for the "Inter" font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Custom CSS for Holidays Page -->
+    <link rel="stylesheet" href="/assets/css/holidays.css">
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar Navigation (fixed) -->
+        <aside class="w-64 bg-white shadow-md flex flex-col p-4 flex-shrink-0">
+            <div class="flex items-center justify-center mb-8">
+                <a href="index.html">
+                    <h1 class="text-2xl font-bold text-gray-800">Payroll</h1>
+                </a>
+            </div>
+
+            <!-- User Profile Section -->
+            <div class="flex flex-col items-center mb-8">
+                <img src="https://placehold.co/80x80/E2E8F0/4A5568?text=UR" alt="Urdhwarit"
+                    class="w-20 h-20 rounded-full mb-2">
+                <h2 class="font-semibold text-gray-800">Urdhwarit Rane</h2>
+                <p class="text-sm text-gray-500">Admin</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex-grow">
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="grid" class="w-5 h-5 mr-3"></i>Dashboard</a></li>
+                    <li><a href="projects.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="briefcase" class="w-5 h-5 mr-3"></i>Projects</a></li>
+                    <li><a href="employees.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="users" class="w-5 h-5 mr-3"></i>Employees</a></li>
+                    <li><a href="leave_management.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="file-text" class="w-5 h-5 mr-3"></i>Leave Management</a></li>
+                    <li><a href="attendance.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="check-square" class="w-5 h-5 mr-3"></i>Attendance</a></li>
+                    <li><a href="holidays.html" class="flex items-center p-3 text-white bg-indigo-500 rounded-lg"><i data-feather="calendar" class="w-5 h-5 mr-3"></i>Holidays</a></li>
+                    <li><a href="clients.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="user-check" class="w-5 h-5 mr-3"></i>Clients</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-sm p-4 flex items-center">
+                 <div class="flex-1 flex justify-end items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-semibold text-gray-700">Urdhwarit Rane</span>
+                        <a href="#"><img src="https://placehold.co/32x32/E2E8F0/4A5568?text=UR" alt="Urdhwarit" class="w-10 h-10 rounded-full"></a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Holidays Content -->
+            <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+                <!-- Breadcrumbs -->
+                <div class="flex items-center text-sm text-gray-500 mb-6">
+                    <a href="index.html" class="hover:text-gray-700"><i data-feather="home" class="w-4 h-4"></i></a>
+                    <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span>Holidays</span>
+                    <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span class="text-gray-800 font-semibold">All Holiday</span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">All Holiday</h2>
+
+                <!-- Holidays Table Section -->
+                <div class="holidays-table-container">
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <i data-feather="search" class="search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="Search...">
+                        </div>
+                        <div class="toolbar-actions">
+                            <button id="addHolidayBtn" class="action-btn add-btn"><i data-feather="plus"></i></button>
+                            <button id="downloadCsvBtn" class="action-btn"><i data-feather="download"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table id="holidaysTable">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="selectAllCheckbox"></th>
+                                    <th>Holiday Name</th>
+                                    <th>Shift</th>
+                                    <th>Date</th>
+                                    <th>Holiday Type</th>
+                                    <th>Created By</th>
+                                    <th>Creation Date</th>
+                                    <th>Approval Status</th>
+                                    <th>Details</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sample Row 1 -->
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>New Year</td>
+                                    <td>All Shifts</td>
+                                    <td>12/31/2021</td>
+                                    <td>National</td>
+                                    <td>Admin</td>
+                                    <td>11/01/2021</td>
+                                    <td><span class="pill pill-approved">Approved</span></td>
+                                    <td>This festival...</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                <!-- Sample Row 2 -->
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>Diwali</td>
+                                    <td>All Shifts</td>
+                                    <td>11/04/2021</td>
+                                    <td>Religious</td>
+                                    <td>Admin</td>
+                                    <td>11/01/2021</td>
+                                    <td><span class="pill pill-approved">Approved</span></td>
+                                    <td>This festival...</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                 <!-- Sample Row 3 -->
+                                <tr>
+                                     <td><input type="checkbox" class="row-checkbox"></td>
+                                     <td>Global Family Day</td>
+                                     <td>Night Shifts</td>
+                                     <td>01/01/2021</td>
+                                     <td>Cultural</td>
+                                     <td>Admin</td>
+                                     <td>11/01/2021</td>
+                                     <td><span class="pill pill-rejected">Rejected</span></td>
+                                     <td>This festival...</td>
+                                     <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                    </div>
+                     <div class="pagination-container">
+                        <span>Items per page:</span>
+                        <select id="itemsPerPage">
+                            <option>10</option>
+                            <option>20</option>
+                            <option>50</option>
+                        </select>
+                        <span id="pageInfo">1 - 10 of 16</span>
+                        <div class="pagination-controls">
+                            <button id="prevPage"><i data-feather="chevron-left"></i></button>
+                            <button id="nextPage"><i data-feather="chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add/Edit Holiday Modal -->
+    <div id="holidayModal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add Holiday</h2>
+                <button id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="holidayForm">
+                    <div class="form-grid">
+                        <div class="form-group"><label for="holidayName">Holiday Name</label><input type="text" id="holidayName" required></div>
+                        <div class="form-group"><label for="holidayShift">Shift</label><input type="text" id="holidayShift" required></div>
+                        <div class="form-group"><label for="holidayDate">Date</label><input type="date" id="holidayDate" required></div>
+                        <div class="form-group"><label for="holidayType">Holiday Type</label><input type="text" id="holidayType" required></div>
+                        <div class="form-group"><label for="approvalStatus">Approval Status</label><select id="approvalStatus"><option value="approved">Approved</option><option value="rejected">Rejected</option></select></div>
+                         <div class="form-group full-width"><label for="holidayDetails">Details</label><textarea id="holidayDetails" rows="2" required></textarea></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancelBtn" class="btn-secondary">Cancel</button>
+                        <button type="submit" id="saveBtn" class="btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/holidays.js"></script>
+</body>
+</html>

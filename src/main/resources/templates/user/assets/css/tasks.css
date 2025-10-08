@@ -1,0 +1,77 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Badge styles */
+.badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+/* Status styles */
+.status-open {
+    background-color: #dcfce7; /* green-100 */
+    color: #22c55e; /* green-500 */
+}
+.status-closed {
+    background-color: #fee2e2; /* red-100 */
+    color: #ef4444; /* red-500 */
+}
+
+/* Priority styles */
+.priority-high {
+    background-color: #fee2e2; /* red-100 */
+    color: #ef4444; /* red-500 */
+}
+.priority-medium {
+    background-color: #ffedd5; /* orange-100 */
+    color: #f97316; /* orange-500 */
+}
+.priority-low {
+    background-color: #dbeafe; /* blue-100 */
+    color: #3b82f6; /* blue-500 */
+}
+
+
+/* Action button styles */
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+}
+.action-btn:hover {
+    background-color: #f3f4f6; /* gray-100 */
+}
+.action-btn i {
+    width: 16px;
+    height: 16px;
+}
+.action-btn-edit {
+    color: #3b82f6; /* blue-500 */
+}
+.action-btn-delete {
+    color: #ef4444; /* red-500 */
+}
+
+
+/* Refresh button animation */
+.refreshing {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Leave Management</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for the "Inter" font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Custom CSS for Leave Management Page -->
+    <link rel="stylesheet" href="/assets/css/leave_management.css">
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar Navigation (fixed) -->
+        <aside class="w-64 bg-white shadow-md flex flex-col p-4 flex-shrink-0">
+            <div class="flex items-center justify-center mb-8">
+                <a href="index.html">
+                    <h1 class="text-2xl font-bold text-gray-800">Payroll</h1>
+                </a>
+            </div>
+
+            <!-- User Profile Section -->
+            <div class="flex flex-col items-center mb-8">
+                <img src="https://placehold.co/80x80/E2E8F0/4A5568?text=UR" alt="Urdhwarit"
+                    class="w-20 h-20 rounded-full mb-2">
+                <h2 class="font-semibold text-gray-800">Urdhwarit Rane</h2>
+                <p class="text-sm text-gray-500">Admin</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex-grow">
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="grid" class="w-5 h-5 mr-3"></i>Dashboard</a></li>
+                    <li><a href="projects.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="briefcase" class="w-5 h-5 mr-3"></i>Projects</a></li>
+                    <li><a href="employees.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="users" class="w-5 h-5 mr-3"></i>Employees</a></li>
+                    <li><a href="leave_management.html" class="flex items-center p-3 text-white bg-indigo-500 rounded-lg"><i data-feather="file-text" class="w-5 h-5 mr-3"></i>Leave Management</a></li>
+                    <li><a href="attendance.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="check-square" class="w-5 h-5 mr-3"></i>Attendance</a></li>
+                    <li><a href="holidays.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="calendar" class="w-5 h-5 mr-3"></i>Holidays</a></li>
+                    <li><a href="clients.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg"><i data-feather="user-check" class="w-5 h-5 mr-3"></i>Clients</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-sm p-4 flex items-center">
+                <div class="flex-1 flex justify-end items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-semibold text-gray-700">Urdhwarit Rane</span>
+                        <a href="#"><img src="https://placehold.co/32x32/E2E8F0/4A5568?text=UR" alt="Urdhwarit" class="w-10 h-10 rounded-full"></a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Leave Management Content -->
+            <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+                <!-- Breadcrumbs -->
+                <div class="flex items-center text-sm text-gray-500 mb-6">
+                    <a href="index.html" class="hover:text-gray-700"><i data-feather="home" class="w-4 h-4"></i></a>
+                    <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span>Leaves</span>
+                    <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span class="text-gray-800 font-semibold">Leave Requests</span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Leave Requests</h2>
+
+                <!-- Leave Requests Table Section -->
+                <div class="leave-table-container">
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <i data-feather="search" class="search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="Search...">
+                        </div>
+                        <div class="toolbar-actions">
+                            <button id="addLeaveBtn" class="action-btn add-btn"><i data-feather="plus"></i></button>
+                            <button id="downloadCsvBtn" class="action-btn"><i data-feather="download"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table id="leaveTable">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="selectAllCheckbox"></th>
+                                    <th>Employee Name</th>
+                                    <th>Employee ID</th>
+                                    <th>Department</th>
+                                    <th>Leave Type</th>
+                                    <th>Leave From</th>
+                                    <th>Leave To</th>
+                                    <th>Number of Days</th>
+                                    <th>Duration Type</th>
+                                    <th>Status</th>
+                                    <th>Reason</th>
+                                    <th>Requested On</th>
+                                    <th>Approved By</th>
+                                    <th>Approval Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Sample Row 1 -->
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td><div class="user-profile"><img src="https://placehold.co/32x32/ffedd5/f97316?text=JD" alt="John Deo"><span>John Deo</span></div></td>
+                                    <td>E123</td>
+                                    <td>Human Resources</td>
+                                    <td>Medical Leave</td>
+                                    <td>04/10/1985</td>
+                                    <td>04/14/1985</td>
+                                    <td>4</td>
+                                    <td>Half-day</td>
+                                    <td><span class="pill pill-pending">Pending</span></td>
+                                    <td>Going to hospital</td>
+                                    <td>01/15/2018</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                <!-- Sample Row 2 -->
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td><div class="user-profile"><img src="https://placehold.co/32x32/ecfccb/84cc16?text=SS" alt="Sarah Smith"><span>Sarah Smith</span></div></td>
+                                    <td>E124</td>
+                                    <td>Finance</td>
+                                    <td>Maternity Leave</td>
+                                    <td>02/20/2023</td>
+                                    <td>05/20/2023</td>
+                                    <td>90</td>
+                                    <td>Full-day</td>
+                                    <td><span class="pill pill-approved">Approved</span></td>
+                                    <td>Maternity</td>
+                                    <td>01/18/2023</td>
+                                    <td>Jane Smith</td>
+                                    <td>01/20/2023</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                 <!-- Sample Row 3 -->
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td><div class="user-profile"><img src="https://placehold.co/32x32/dbeafe/3b82f6?text=MB" alt="Marie Brown"><span>Marie Brown</span></div></td>
+                                    <td>E128</td>
+                                    <td>Sales</td>
+                                    <td>Casual Leave</td>
+                                    <td>11/08/1983</td>
+                                    <td>11/08/1983</td>
+                                    <td>1</td>
+                                    <td>Half-day</td>
+                                    <td><span class="pill pill-rejected">Rejected</span></td>
+                                    <td>Personal Work</td>
+                                    <td>11/01/1983</td>
+                                    <td>Mike Johnson</td>
+                                    <td>11/02/1983</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td><div class="user-profile"><img src="https://placehold.co/32x32/ecfccb/84cc16?text=SS" alt="Sarah Smith"><span>Sarah Smith</span></div></td>
+                                    <td>E124</td>
+                                    <td>Finance</td>
+                                    <td>Maternity Leave</td>
+                                    <td>02/20/2023</td>
+                                    <td>05/20/2023</td>
+                                    <td>90</td>
+                                    <td>Full-day</td>
+                                    <td><span class="pill pill-approved">Approved</span></td>
+                                    <td>Maternity</td>
+                                    <td>01/18/2023</td>
+                                    <td>Jane Smith</td>
+                                    <td>01/20/2023</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td><div class="user-profile"><img src="https://placehold.co/32x32/ffedd5/f97316?text=JD" alt="John Deo"><span>John Deo</span></div></td>
+                                    <td>E123</td>
+                                    <td>Human Resources</td>
+                                    <td>Medical Leave</td>
+                                    <td>04/10/1985</td>
+                                    <td>04/14/1985</td>
+                                    <td>4</td>
+                                    <td>Half-day</td>
+                                    <td><span class="pill pill-pending">Pending</span></td>
+                                    <td>Going to hospital</td>
+                                    <td>01/15/2018</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                <!-- Sample Row 2 -->
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td><div class="user-profile"><img src="https://placehold.co/32x32/ecfccb/84cc16?text=SS" alt="Sarah Smith"><span>Sarah Smith</span></div></td>
+                                    <td>E124</td>
+                                    <td>Finance</td>
+                                    <td>Maternity Leave</td>
+                                    <td>02/20/2023</td>
+                                    <td>05/20/2023</td>
+                                    <td>90</td>
+                                    <td>Full-day</td>
+                                    <td><span class="pill pill-approved">Approved</span></td>
+                                    <td>Maternity</td>
+                                    <td>01/18/2023</td>
+                                    <td>Jane Smith</td>
+                                    <td>01/20/2023</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                 <!-- Sample Row 3 -->
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td><div class="user-profile"><img src="https://placehold.co/32x32/dbeafe/3b82f6?text=MB" alt="Marie Brown"><span>Marie Brown</span></div></td>
+                                    <td>E128</td>
+                                    <td>Sales</td>
+                                    <td>Casual Leave</td>
+                                    <td>11/08/1983</td>
+                                    <td>11/08/1983</td>
+                                    <td>1</td>
+                                    <td>Half-day</td>
+                                    <td><span class="pill pill-rejected">Rejected</span></td>
+                                    <td>Personal Work</td>
+                                    <td>11/01/1983</td>
+                                    <td>Mike Johnson</td>
+                                    <td>11/02/1983</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td><div class="user-profile"><img src="https://placehold.co/32x32/ecfccb/84cc16?text=SS" alt="Sarah Smith"><span>Sarah Smith</span></div></td>
+                                    <td>E124</td>
+                                    <td>Finance</td>
+                                    <td>Maternity Leave</td>
+                                    <td>02/20/2023</td>
+                                    <td>05/20/2023</td>
+                                    <td>90</td>
+                                    <td>Full-day</td>
+                                    <td><span class="pill pill-approved">Approved</span></td>
+                                    <td>Maternity</td>
+                                    <td>01/18/2023</td>
+                                    <td>Jane Smith</td>
+                                    <td>01/20/2023</td>
+                                    <td><div class="action-icons"><i data-feather="edit-2" class="edit-btn"></i><i data-feather="trash-2" class="delete-btn"></i></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add Leave Modal -->
+    <div id="addLeaveModal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Leave Request</h2>
+                <button id="closeAddModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addLeaveForm">
+                    <div class="form-grid">
+                        <div class="form-group"><label for="employeeName">Employee Name</label><input type="text" id="employeeName" required></div>
+                        <div class="form-group"><label for="employeeId">Employee ID</label><input type="text" id="employeeId" required></div>
+                        <div class="form-group"><label for="department">Department</label><input type="text" id="department" required></div>
+                        <div class="form-group"><label for="leaveType">Leave Type</label><input type="text" id="leaveType" required></div>
+                        <div class="form-group"><label for="leaveFrom">Leave From</label><input type="date" id="leaveFrom" required></div>
+                        <div class="form-group"><label for="leaveTo">Leave To</label><input type="date" id="leaveTo" required></div>
+                        <div class="form-group"><label for="durationType">Duration Type</label><select id="durationType"><option value="Full-day">Full-day</option><option value="Half-day">Half-day</option></select></div>
+                        <div class="form-group"><label for="reason">Reason</label><textarea id="reason" rows="2" required></textarea></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancelAddBtn" class="btn-secondary">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Edit Leave Modal -->
+    <div id="editLeaveModal" class="modal-backdrop hidden">
+         <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Leave Request</h2>
+                <button id="closeEditModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editLeaveForm">
+                     <div class="form-grid">
+                        <div class="form-group"><label>Employee Name</label><p id="editEmployeeName"></p></div>
+                        <div class="form-group"><label>Employee ID</label><p id="editEmployeeId"></p></div>
+                        <div class="form-group"><label>Department</label><p id="editDepartment"></p></div>
+                        <div class="form-group"><label>Leave Type</label><p id="editLeaveType"></p></div>
+                        <div class="form-group"><label>Leave From</label><p id="editLeaveFrom"></p></div>
+                        <div class="form-group"><label>Leave To</label><p id="editLeaveTo"></p></div>
+                        <div class="form-group"><label>Duration Type</label><p id="editDurationType"></p></div>
+                        <div class="form-group"><label>Reason</label><p id="editReason"></p></div>
+                        <div class="form-group"><label for="editStatus">Status</label><select id="editStatus"><option value="pending">Pending</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select></div>
+                        <div class="form-group"><label for="approvedBy">Approved By</label><input type="text" id="approvedBy"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancelEditBtn" class="btn-secondary">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/leave_management.js"></script>
+</body>
+</html>

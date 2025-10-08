@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Projects</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for the "Inter" font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Custom CSS for Projects Page -->
+    <link rel="stylesheet" href="/assets/css/projects.css">
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar Navigation (fixed) -->
+        <aside class="w-64 bg-white shadow-md flex flex-col p-4 flex-shrink-0">
+            <div class="flex items-center justify-center mb-8">
+                <a href="index.html">
+                    <h1 class="text-2xl font-bold text-gray-800">Payroll</h1>
+                </a>
+                <button class="ml-auto text-gray-600 lg:hidden">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+
+            <!-- User Profile Section -->
+            <div class="flex flex-col items-center mb-8">
+                <img src="https://placehold.co/80x80/E2E8F0/4A5568?text=UR" alt="Urdhwarit"
+                    class="w-20 h-20 rounded-full mb-2">
+                <h2 class="font-semibold text-gray-800">Urdhwarit Rane</h2>
+                <p class="text-sm text-gray-500">Admin</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex-grow">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="index.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="grid" class="w-5 h-5 mr-3"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="projects.html"
+                            class="flex items-center p-3 text-white bg-indigo-500 rounded-lg">
+                            <i data-feather="briefcase" class="w-5 h-5 mr-3"></i>
+                            Projects
+                        </a>
+                    </li>
+                    <li>
+                        <a href="employees.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="users" class="w-5 h-5 mr-3"></i>
+                            Employees
+                        </a>
+                    </li>
+                    <li>
+                        <a href="leave_management.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="file-text" class="w-5 h-5 mr-3"></i>
+                            Leave Management
+                        </a>
+                    </li>
+                    <li>
+                        <a href="attendance.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="check-square" class="w-5 h-5 mr-3"></i>
+                            Attendance
+                        </a>
+                    </li>
+                    <li>
+                        <a href="holidays.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="calendar" class="w-5 h-5 mr-3"></i>
+                            Holidays
+                        </a>
+                    </li>
+                    <li>
+                        <a href="clients.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="user-check" class="w-5 h-5 mr-3"></i> 
+                            Clients
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-sm p-4 flex items-center">
+                <div class="flex-1 flex justify-end items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-semibold text-gray-700">Urdhwarit Rane</span>
+                        <a href="#"><img src="https://placehold.co/32x32/E2E8F0/4A5568?text=UR" alt="Urdhwarit"
+                                class="w-10 h-10 rounded-full"></a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Projects Content (scrollable) -->
+            <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+                <!-- Breadcrumbs -->
+                <div class="flex items-center text-sm text-gray-500 mb-6">
+                    <a href="index.html" class="hover:text-gray-700"><i data-feather="home" class="w-4 h-4"></i></a>
+                    <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span>Projects</span>
+                     <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span class="text-gray-800 font-semibold">All Projects</span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">All Projects</h2>
+                
+                <!-- Kanban Board -->
+                <div class="kanban-board">
+                    <!-- New Projects Column -->
+                    <div class="kanban-column" id="new-projects-col">
+                        <div class="column-header">
+                            <h3>New Projects</h3>
+                            <span class="project-count">3 projects</span>
+                        </div>
+                        <div class="project-cards">
+                           <div class="project-card">
+                               <div class="card-header">
+                                   <h4>ERP System</h4>
+                                   <span class="tag tag-purple">Testing</span>
+                               </div>
+                               <p class="open-tasks"><i data-feather="check-circle" class="w-4 h-4"></i> 12 open tasks</p>
+                               <p class="description">All the Lorem Ipsum generators on the Internet tend to repeat necessary, making this the first true generator on the Internet.</p>
+                               <div class="details">
+                                   <p><span>Created:</span> Jan 11, 2020</p>
+                                   <p><span>Team Leader:</span> Jens Brincker</p>
+                                   <p><span>Priority:</span> <span class="priority low">Low</span></p>
+                                   <p><span>Deadline:</span> Apr 17, 2021</p>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                    <!-- Running Column -->
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <h3>Running</h3>
+                            <span class="project-count">2 projects</span>
+                        </div>
+                         <div class="project-cards">
+                           <div class="project-card">
+                               <div class="card-header">
+                                   <h4>Shopping Application</h4>
+                                   <span class="tag tag-green">Android</span>
+                               </div>
+                               <p class="open-tasks"><i data-feather="check-circle" class="w-4 h-4"></i> 22 open tasks</p>
+                               <p class="description">There are many variations of passages of Lorem Ipsum available, but suffered alteration in some form, by injected humour.</p>
+                               <div class="details">
+                                   <p><span>Created:</span> Aug 25, 2021</p>
+                                   <p><span>Team Leader:</span> Jay Soni</p>
+                                   <p><span>Priority:</span> <span class="priority high">High</span></p>
+                                   <p><span>Deadline:</span> Mar 13, 2024</p>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                    <!-- On Hold Column -->
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <h3>On Hold</h3>
+                            <span class="project-count">2 projects</span>
+                        </div>
+                         <div class="project-cards">
+                           <div class="project-card">
+                               <div class="card-header">
+                                   <h4>J&K Sons Website</h4>
+                                    <span class="tag tag-purple">Testing</span>
+                               </div>
+                               <p class="open-tasks"><i data-feather="check-circle" class="w-4 h-4"></i> 9 open tasks</p>
+                               <p class="description">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</p>
+                               <div class="details">
+                                   <p><span>Created:</span> Sep 12, 2020</p>
+                                   <p><span>Team Leader:</span> Mark Hay</p>
+                                   <p><span>Priority:</span> <span class="priority low">Low</span></p>
+                                   <p><span>Deadline:</span> Feb 18, 2022</p>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                     <!-- Finished Column -->
+                    <div class="kanban-column">
+                        <div class="column-header">
+                            <h3>Finished</h3>
+                            <span class="project-count">1 project</span>
+                        </div>
+                         <div class="project-cards">
+                           <div class="project-card">
+                               <div class="card-header">
+                                   <h4>Video Streaming App</h4>
+                                   <span class="tag tag-orange">API</span>
+                               </div>
+                               <p class="open-tasks"><i data-feather="check-circle" class="w-4 h-4"></i> 27 open tasks</p>
+                               <p class="description">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC.</p>
+                               <div class="details">
+                                   <p><span>Created:</span> Jun 22, 2021</p>
+                                   <p><span>Team Leader:</span> Airi Satou</p>
+                                   <p><span>Priority:</span> <span class="priority high">High</span></p>
+                                   <p><span>Deadline:</span> Apr 13, 2022</p>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Add Button -->
+                <button id="addProjectFab" class="fab">+</button>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add Project Modal -->
+    <div id="addProjectModal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Project</h2>
+                <button id="closeAddModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addProjectForm">
+                    <div class="form-group">
+                        <label for="projectName">Project Name</label>
+                        <input type="text" id="projectName" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="projectDescription">Description</label>
+                        <textarea id="projectDescription" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="teamLeader">Team Leader</label>
+                        <input type="text" id="teamLeader" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Priority</label>
+                        <select id="priority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label for="deadline">Deadline</label>
+                        <input type="date" id="deadline" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancelAddBtn" class="btn-secondary">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Project</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/projects.js"></script>
+</body>
+</html>

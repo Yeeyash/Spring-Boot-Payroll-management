@@ -1,0 +1,65 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Priority & Status badge styles */
+.badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+}
+
+.priority-high {
+    background-color: #fee2e2; /* red-100 */
+    color: #ef4444; /* red-500 */
+}
+.priority-medium {
+    background-color: #ffedd5; /* orange-100 */
+    color: #f97316; /* orange-500 */
+}
+.priority-low {
+    background-color: #dbeafe; /* blue-100 */
+    color: #3b82f6; /* blue-500 */
+}
+
+.status-active {
+    background-color: #dcfce7; /* green-100 */
+    color: #22c55e; /* green-500 */
+}
+.status-deactive {
+    background-color: #f3f4f6; /* gray-100 */
+    color: #6b7280; /* gray-500 */
+}
+
+/* Progress bar */
+.progress-bar-container {
+    width: 100%;
+    background-color: #e5e7eb; /* gray-200 */
+    border-radius: 9999px;
+    height: 8px;
+}
+
+.progress-bar {
+    background-color: #3b82f6; /* blue-500 */
+    height: 8px;
+    border-radius: 9999px;
+}
+
+/* Refresh button animation */
+.refreshing {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+

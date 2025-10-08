@@ -1,0 +1,77 @@
+/* Applying the Inter font to the whole page */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc; /* A light gray background */
+}
+
+/* Custom scrollbar for team list */
+#team-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+#team-list::-webkit-scrollbar-track {
+    background: #f1f5f9; /* gray-100 */
+    border-radius: 10px;
+}
+
+#team-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1; /* gray-300 */
+    border-radius: 10px;
+}
+
+#team-list::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; /* gray-400 */
+}
+
+/* Status badge styles */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.status-available {
+    background-color: #e0f2fe; /* light blue */
+    color: #0ea5e9; /* sky-500 */
+}
+.status-absent {
+    background-color: #ffedd5; /* orange-100 */
+    color: #f97316; /* orange-500 */
+}
+.status-not-started {
+    background-color: #ffedd5;
+    color: #f97316;
+}
+.status-completed {
+    background-color: #dcfce7;
+    color: #22c55e;
+}
+.status-in-progress {
+    background-color: #ede9fe;
+    color: #8b5cf6;
+}
+.status-pending {
+    background-color: #e0f2fe;
+    color: #3b82f6;
+}
+
+/* Progress bar styles */
+.progress-bar-container {
+    width: 100%;
+    background-color: #e5e7eb; /* gray-200 */
+    border-radius: 9999px;
+    height: 8px;
+}
+
+.progress-bar {
+    background-color: #3b82f6; /* blue-500 */
+    height: 8px;
+    border-radius: 9999px;
+}
+
+/* Priority colors for Todo List text */
+.priority-high span { color: #ef4444; } /* red-500 */
+.priority-low span { color: #22c55e; } /* green-500 */
+.priority-normal span { color: #6b7280; } /* gray-500 */

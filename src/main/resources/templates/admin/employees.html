@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Employees</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for the "Inter" font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Feather Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Custom CSS for Employees Page -->
+    <link rel="stylesheet" href="/assets/css/employees.css">
+</head>
+
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar Navigation (fixed) -->
+        <aside class="w-64 bg-white shadow-md flex flex-col p-4 flex-shrink-0">
+            <div class="flex items-center justify-center mb-8">
+                <a href="index.html">
+                    <h1 class="text-2xl font-bold text-gray-800">Payroll</h1>
+                </a>
+                <button class="ml-auto text-gray-600 lg:hidden">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+
+            <!-- User Profile Section -->
+            <div class="flex flex-col items-center mb-8">
+                <img src="https://placehold.co/80x80/E2E8F0/4A5568?text=UR" alt="Urdhwarit"
+                    class="w-20 h-20 rounded-full mb-2">
+                <h2 class="font-semibold text-gray-800">Urdhwarit Rane</h2>
+                <p class="text-sm text-gray-500">Admin</p>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="flex-grow">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="index.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="grid" class="w-5 h-5 mr-3"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="projects.html"
+                            class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="briefcase" class="w-5 h-5 mr-3"></i>
+                            Projects
+                        </a>
+                    </li>
+                    <li>
+                        <a href="employees.html" class="flex items-center p-3 text-white bg-indigo-500 rounded-lg">
+                            <i data-feather="users" class="w-5 h-5 mr-3"></i>
+                            Employees
+                        </a>
+                    </li>
+                    <li>
+                        <a href="leave_management.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="file-text" class="w-5 h-5 mr-3"></i>
+                            Leave Management
+                        </a>
+                    </li>
+                    <li>
+                        <a href="attendance.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="check-square" class="w-5 h-5 mr-3"></i>
+                            Attendance
+                        </a>
+                    </li>
+                    <li>
+                        <a href="holidays.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="calendar" class="w-5 h-5 mr-3"></i>
+                            Holidays
+                        </a>
+                    </li>
+                    <li>
+                        <a href="clients.html" class="flex items-center p-3 text-gray-600 hover:bg-gray-100 rounded-lg">
+                            <i data-feather="user-check" class="w-5 h-5 mr-3"></i> Clients
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-sm p-4 flex items-center">
+                <div class="flex-1 flex justify-end items-center space-x-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-semibold text-gray-700">Urdhwarit Rane</span>
+                        <a href="#"><img src="https://placehold.co/32x32/E2E8F0/4A5568?text=UR" alt="Urdhwarit"
+                                class="w-10 h-10 rounded-full"></a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Employees Content (scrollable) -->
+            <main class="flex-1 p-6 lg:p-8 overflow-y-auto">
+                <!-- Breadcrumbs -->
+                <div class="flex items-center text-sm text-gray-500 mb-6">
+                    <a href="index.html" class="hover:text-gray-700"><i data-feather="home" class="w-4 h-4"></i></a>
+                    <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span>Employees</span>
+                    <i data-feather="chevron-right" class="w-4 h-4 mx-1"></i>
+                    <span class="text-gray-800 font-semibold">All Employee</span>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">All Employee</h2>
+
+                <!-- Employee Table Section -->
+                <div class="employee-table-container">
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <i data-feather="search" class="search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="Search...">
+                        </div>
+                        <div class="toolbar-actions">
+                            <button id="addEmployeeBtn" class="action-btn add-btn"><i data-feather="plus"></i></button>
+                            <button id="downloadCsvBtn" class="action-btn"><i data-feather="download"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table id="employeeTable">
+                            <thead>
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/ffedd5/f97316?text=JD" alt="John Doe">
+                                            <span>John Doe</span>
+                                        </div>
+                                    </td>
+                                    <td>Developer</td>
+                                    <td>Java</td>
+                                    <td>1234567890</td>
+                                    <td>03/01/2018</td>
+                                    <td>john.doe@example.com</td>
+                                    <td><span class="pill pill-male">Male</span></td>
+                                    <td>123 Elm Street</td>
+                                    <td><span class="pill pill-on-leave">On Leave</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/ecfccb/84cc16?text=JS"
+                                                alt="Jane Smith">
+                                            <span>Jane Smith</span>
+                                        </div>
+                                    </td>
+                                    <td>Designer</td>
+                                    <td>UI/UX</td>
+                                    <td>2345678901</td>
+                                    <td>05/20/2019</td>
+                                    <td>jane.smith@example.com</td>
+                                    <td><span class="pill pill-female">Female</span></td>
+                                    <td>456 Oak Ave</td>
+                                    <td><span class="pill pill-active">Active</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/f0f9ff/0284c7?text=MT"
+                                                alt="Michael Tan">
+                                            <span>Michael Tan</span>
+                                        </div>
+                                    </td>
+                                    <td>Project Manager</td>
+                                    <td>Agile</td>
+                                    <td>3456789012</td>
+                                    <td>09/15/2017</td>
+                                    <td>michael.tan@example.com</td>
+                                    <td><span class="pill pill-male">Male</span></td>
+                                    <td>789 Pine Road</td>
+                                    <td><span class="pill pill-active">Active</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/fee2e2/ef4444?text=AR" alt="Alice Roy">
+                                            <span>Alice Roy</span>
+                                        </div>
+                                    </td>
+                                    <td>QA Engineer</td>
+                                    <td>Automation</td>
+                                    <td>4567890123</td>
+                                    <td>12/11/2020</td>
+                                    <td>alice.roy@example.com</td>
+                                    <td><span class="pill pill-female">Female</span></td>
+                                    <td>101 Maple Street</td>
+                                    <td><span class="pill pill-inactive">Inactive</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/ede9fe/7c3aed?text=RS"
+                                                alt="Rahul Sharma">
+                                            <span>Rahul Sharma</span>
+                                        </div>
+                                    </td>
+                                    <td>Data Analyst</td>
+                                    <td>Python</td>
+                                    <td>5678901234</td>
+                                    <td>07/05/2016</td>
+                                    <td>rahul.sharma@example.com</td>
+                                    <td><span class="pill pill-male">Male</span></td>
+                                    <td>202 Cedar Lane</td>
+                                    <td><span class="pill pill-active">Active</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/fff7ed/f97316?text=KK"
+                                                alt="Kiran Kumar">
+                                            <span>Kiran Kumar</span>
+                                        </div>
+                                    </td>
+                                    <td>System Admin</td>
+                                    <td>Linux</td>
+                                    <td>6789012345</td>
+                                    <td>01/18/2015</td>
+                                    <td>kiran.kumar@example.com</td>
+                                    <td><span class="pill pill-male">Male</span></td>
+                                    <td>303 Birch Blvd</td>
+                                    <td><span class="pill pill-on-leave">On Leave</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/fef9c3/ca8a04?text=NP"
+                                                alt="Neha Patel">
+                                            <span>Neha Patel</span>
+                                        </div>
+                                    </td>
+                                    <td>Business Analyst</td>
+                                    <td>SQL</td>
+                                    <td>7890123456</td>
+                                    <td>04/09/2021</td>
+                                    <td>neha.patel@example.com</td>
+                                    <td><span class="pill pill-female">Female</span></td>
+                                    <td>404 Willow Drive</td>
+                                    <td><span class="pill pill-active">Active</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/dbeafe/2563eb?text=VL"
+                                                alt="Victor Lee">
+                                            <span>Victor Lee</span>
+                                        </div>
+                                    </td>
+                                    <td>Frontend Dev</td>
+                                    <td>React</td>
+                                    <td>8901234567</td>
+                                    <td>10/22/2018</td>
+                                    <td>victor.lee@example.com</td>
+                                    <td><span class="pill pill-male">Male</span></td>
+                                    <td>505 Cherry Court</td>
+                                    <td><span class="pill pill-active">Active</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/fef2f2/f43f5e?text=SC"
+                                                alt="Sophia Chen">
+                                            <span>Sophia Chen</span>
+                                        </div>
+                                    </td>
+                                    <td>HR Specialist</td>
+                                    <td>Recruitment</td>
+                                    <td>9012345678</td>
+                                    <td>11/30/2019</td>
+                                    <td>sophia.chen@example.com</td>
+                                    <td><span class="pill pill-female">Female</span></td>
+                                    <td>606 Poplar Lane</td>
+                                    <td><span class="pill pill-on-leave">On Leave</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="checkbox" class="row-checkbox"></td>
+                                    <td>
+                                        <div class="user-profile">
+                                            <img src="https://placehold.co/32x32/f0fdf4/16a34a?text=AM"
+                                                alt="Amit Mehra">
+                                            <span>Amit Mehra</span>
+                                        </div>
+                                    </td>
+                                    <td>Backend Dev</td>
+                                    <td>Node.js</td>
+                                    <td>9123456789</td>
+                                    <td>08/12/2022</td>
+                                    <td>amit.mehra@example.com</td>
+                                    <td><span class="pill pill-male">Male</span></td>
+                                    <td>707 Spruce Street</td>
+                                    <td><span class="pill pill-active">Active</span></td>
+                                    <td>
+                                        <div class="action-icons">
+                                            <i data-feather="edit-2" class="edit-btn"></i>
+                                            <i data-feather="trash-2" class="delete-btn"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <!-- Add more sample rows as needed -->
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add Employee Modal -->
+    <div id="addEmployeeModal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Employee</h2>
+                <button id="closeAddModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addEmployeeForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="employeeName">Name</label>
+                            <input type="text" id="employeeName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeRole">Role</label>
+                            <input type="text" id="employeeRole" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeDepartment">Department</label>
+                            <input type="text" id="employeeDepartment" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeMobile">Mobile</label>
+                            <input type="tel" id="employeeMobile" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeJoiningDate">Joining Date</label>
+                            <input type="date" id="employeeJoiningDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeEmail">Email</label>
+                            <input type="email" id="employeeEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeGender">Gender</label>
+                            <select id="employeeGender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeStatus">Employee Status</label>
+                            <select id="employeeStatus">
+                                <option value="active">Active</option>
+                                <option value="on-leave">On Leave</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="employeeAddress">Address</label>
+                            <textarea id="employeeAddress" rows="2" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancelAddBtn" class="btn-secondary">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Employee</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Employee Modal -->
+    <div id="editEmployeeModal" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Employee Details</h2>
+                <button id="closeEditModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editEmployeeForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="editEmployeeName">Name</label>
+                            <input type="text" id="editEmployeeName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmployeeRole">Role</label>
+                            <input type="text" id="editEmployeeRole" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmployeeDepartment">Department</label>
+                            <input type="text" id="editEmployeeDepartment" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmployeeMobile">Mobile</label>
+                            <input type="tel" id="editEmployeeMobile" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmployeeJoiningDate">Joining Date</label>
+                            <input type="date" id="editEmployeeJoiningDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmployeeEmail">Email</label>
+                            <input type="email" id="editEmployeeEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmployeeGender">Gender</label>
+                            <select id="editEmployeeGender">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="editEmployeeStatus">Employee Status</label>
+                            <select id="editEmployeeStatus">
+                                <option value="active">Active</option>
+                                <option value="on-leave">On Leave</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="editEmployeeAddress">Address</label>
+                            <textarea id="editEmployeeAddress" rows="2" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancelEditBtn" class="btn-secondary">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/assets/js/employees.js"></script>
+</body>
+
+</html>
