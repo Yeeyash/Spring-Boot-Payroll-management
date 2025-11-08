@@ -24,7 +24,7 @@ public class SecurityConfiguration {
         http
         .csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/api/v1/auth/**", "/favicon.ico","/user/login", "/admin/login", "/static/**", "/public/**", "/error", "/.well-known/**").permitAll() //login ne change akrun dya
+            .requestMatchers("/api/v1/auth/**", "/favicon.ico","/user/login", "/admin/login", "/static/**", "/public/**", "/error", "/.well-known/**", "/user/**").permitAll() //login ne change akrun dya
             .anyRequest().authenticated()
         )
         .sessionManagement(session -> session
